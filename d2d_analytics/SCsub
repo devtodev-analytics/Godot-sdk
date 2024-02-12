@@ -1,0 +1,56 @@
+# SCsub
+
+Import('env')
+
+module_env = env.Clone()
+
+#public
+module_env.add_source_files(env.modules_sources, "register_types.cpp")
+module_env.add_source_files(env.modules_sources, "DTDAnalyticsLibrary.cpp")
+module_env.add_source_files(env.modules_sources, "DTDAnalyticsConfiguration.cpp")
+module_env.add_source_files(env.modules_sources, "DTDLogLevel.cpp")
+module_env.add_source_files(env.modules_sources, "DTDUserCardLibrary.cpp")
+module_env.add_source_files(env.modules_sources, "DTDRemoteConfigLibrary.cpp")
+module_env.add_source_files(env.modules_sources, "DTDSocialNetwork.cpp")
+module_env.add_source_files(env.modules_sources, "DTDReferralProperty.cpp")
+module_env.add_source_files(env.modules_sources, "DTDCustomEventParams.cpp")
+module_env.add_source_files(env.modules_sources, "DTDAccrualType.cpp")
+module_env.add_source_files(env.modules_sources, "DTDInt32Resources.cpp")
+module_env.add_source_files(env.modules_sources, "DTDInt64Resources.cpp")
+module_env.add_source_files(env.modules_sources, "DTDStartProgressionEventParams.cpp")
+module_env.add_source_files(env.modules_sources, "DTDFinishProgressionEventParams.cpp")
+module_env.add_source_files(env.modules_sources, "DTDTrackingStatus.cpp")
+module_env.add_source_files(env.modules_sources, "DTDRemoteConfigValue.cpp")
+module_env.add_source_files(env.modules_sources, "DTDRemoteConfigSource.cpp")
+module_env.add_source_files(env.modules_sources, "DTDRemoteConfigDefaults.cpp")
+module_env.add_source_files(env.modules_sources, "DTDRemoteConfigChangeResult.cpp")
+module_env.add_source_files(env.modules_sources, "DTDRemoteConfigReceiveResult.cpp")
+
+
+
+#private
+module_env.add_source_files(env.modules_sources, "private/platform/PlatformHub.cpp")
+
+#private
+if  module_env["platform"] == "android":
+    module_env.add_source_files(env.modules_sources, "private/platform/android/AndroidAnalytics.cpp")
+    module_env.add_source_files(env.modules_sources, "private/platform/android/AndroidUserCard.cpp")
+    module_env.add_source_files(env.modules_sources, "private/platform/android/AndroidRemoteConfig.cpp")
+    module_env.add_source_files(env.modules_sources, "private/platform/android/AndroidConverter.cpp")
+
+#private
+if  module_env["platform"] == "macos" or module_env["platform"] == "osx":
+    module_env.add_source_files(env.modules_sources, "private/platform/mac/MacAnalytics.mm")
+    module_env.add_source_files(env.modules_sources, "private/platform/mac/MacUserCard.mm")
+    module_env.add_source_files(env.modules_sources, "private/platform/mac/MacConverter.mm")
+    module_env.add_source_files(env.modules_sources, "private/platform/mac/MacRemoteConfig.mm")
+    module_env.add_source_files(env.modules_sources, "private/platform/mac/MacIdentifiersListener.mm")
+    module_env.add_source_files(env.modules_sources, "private/platform/mac/MacRemoteConfigDelegate.mm")
+
+if module_env['platform'] == 'iphone' or module_env["platform"] == "ios":
+    module_env.add_source_files(env.modules_sources, "private/platform/ios/IOSAnalytics.mm")
+    module_env.add_source_files(env.modules_sources, "private/platform/ios/IOSUserCard.mm")
+    module_env.add_source_files(env.modules_sources, "private/platform/ios/IOSConverter.mm")
+    module_env.add_source_files(env.modules_sources, "private/platform/ios/IOSRemoteConfig.mm")
+    module_env.add_source_files(env.modules_sources, "private/platform/ios/IOSIdentifiersListener.mm")
+    module_env.add_source_files(env.modules_sources, "private/platform/ios/IOSRemoteConfigDelegate.mm")
